@@ -309,7 +309,7 @@ load _helpers
       -s templates/connect-inject-deployment.yaml  \
       --set 'connectInject.enabled=true' \
       . | tee /dev/stderr |
-      yq '.spec.template.spec.serviceAccountName | contains("connect-injector-webhook-sa")' | tee /dev/stderr)
+      yq '.spec.template.spec.serviceAccountName | contains("connect-injector-webhook-svc-account")' | tee /dev/stderr)
   [ "${actual}" = "true" ]
 }
 
