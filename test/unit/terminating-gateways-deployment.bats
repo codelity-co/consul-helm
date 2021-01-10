@@ -930,7 +930,7 @@ EOF
       yq -s -r '.[0].spec.template.spec.initContainers | map(select(.name == "service-init"))[0] | .command[2]' | tee /dev/stderr)
 
   exp='consul-k8s acl-init \
-  -secret-name="release-name-consul-terminating-gateway-terminating-gateway-acl-token" \
+  -secret-name="release-name-consul-terminating-gateway-termgw-acl-token" \
   -k8s-namespace=default \
   -token-sink-file=/consul/service/acl-token
 
