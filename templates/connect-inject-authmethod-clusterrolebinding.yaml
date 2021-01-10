@@ -15,7 +15,7 @@ roleRef:
   name: "system:auth-delegator"
 subjects:
   - kind: ServiceAccount
-    name: {{ template "consul.fullname" . }}-connect-injector-authmethod-svc-account
+    name: {{ template "consul.fullname" . }}-connect-injector-authmethod-sa
     namespace: {{ .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -33,7 +33,7 @@ roleRef:
   name: {{ template "consul.fullname" . }}-connect-injector-authmethod-role
 subjects:
   - kind: ServiceAccount
-    name: {{ template "consul.fullname" . }}-connect-injector-authmethod-svc-account
+    name: {{ template "consul.fullname" . }}-connect-injector-authmethod-sa
     namespace: {{ .Release.Namespace }}
 {{- end }}
 {{- end }}
