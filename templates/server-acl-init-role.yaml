@@ -22,8 +22,6 @@ rules:
   - apiGroups: [""]
     resources:
       - serviceaccounts
-    resourceNames:
-      - {{ template "consul.fullname" . }}-connect-injector-authmethod-sa
     verbs:
       - get
 {{- end }}
