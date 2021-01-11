@@ -744,7 +744,7 @@ EOF
       yq -r '.spec.template.spec.initContainers | map(select(.name == "service-init"))[0] | .command[2]' | tee /dev/stderr)
 
   exp='consul-k8s acl-init \
-  -secret-name="release-name-consul-mesh-gateway-mesh-gateway-acl-token" \
+  -secret-name="release-name-consul-mesh-gateway-acl-token" \
   -k8s-namespace=default \
   -token-sink-file=/consul/service/acl-token
 
