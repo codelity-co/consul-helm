@@ -111,7 +111,7 @@ spec:
             medium: "Memory"
         {{- end }}
         {{- end }}
-        {{- range $default.extraVolumes }}
+        {{- range $defaults.extraVolumes }}
         {{ toYaml . | nindent 8 }}
         {{- end }}
       initContainers:
@@ -280,7 +280,7 @@ spec:
             {{- end }}
             {{- range $defaults.extraEnv }}
             {{ toYaml . | nindent 12 }}
-            {{- }}
+            {{- end }}
           command:
             - /consul-bin/consul
             - connect
