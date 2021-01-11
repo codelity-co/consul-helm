@@ -150,7 +150,7 @@ spec:
             - |
                 {{- if $root.Values.global.acls.manageSystemACLs }}
                 consul-k8s acl-init \
-                  -secret-name="{{ template "consul.fullname" $root }}-{{ .name }}-ingress-gateway-acl-token" \
+                  -secret-name="{{ template "consul.fullname" $root }}-{{ .name }}-acl-token" \
                   -k8s-namespace={{ $root.Release.Namespace }} \
                   -token-sink-file=/consul/service/acl-token
                 {{ end }}
