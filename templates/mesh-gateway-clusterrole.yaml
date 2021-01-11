@@ -24,7 +24,7 @@ rules:
     resources:
       - secrets
     resourceNames:
-      - {{ template "consul.fullname" . }}-mesh-gateway-acl-token
+      - {{ template "consul.fullname" . }}-acl-token
     verbs:
       - get
 {{- end }}
