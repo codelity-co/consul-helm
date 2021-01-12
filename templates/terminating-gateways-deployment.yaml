@@ -76,7 +76,7 @@ spec:
         - name: consul-service
           emptyDir:
             medium: "Memory"
-        {{- range (default $defaults.extraUserConfigs .extraUserConfigs) }}
+        {{- range (default $defaults.extraVolumes .extraVolumes) }}
         - name: userconfig-{{ .name }}
           {{ .type }}:
             {{- if (eq .type "configMap") }}
@@ -110,9 +110,6 @@ spec:
           emptyDir:
             medium: "Memory"
         {{- end }}
-        {{- end }}
-        {{- range $defaults.extraVolumes }}
-        {{ toYaml . | nindent 8 }}
         {{- end }}
       initContainers:
         # We use the Envoy image as our base image so we use an init container to
@@ -237,13 +234,10 @@ spec:
             mountPath: /consul/tls/ca
             readOnly: true
           {{- end }}
-          {{- range (default $defaults.extraUserConfigs .extraUserConfigs) }}
+          {{- range (default $defaults.extraVolumes .extraVolumes) }}
           - name: userconfig-{{ .name }}
             readOnly: true
             mountPath: /consul/userconfig/{{ .name }}
-          {{- end }}
-          {{- range $defaults.extraVolumeMounts }}
-          {{ toYaml . | nindent 10 }}
           {{- end }}
           env:
             - name: HOST_IP
@@ -277,9 +271,6 @@ spec:
               value: http://$(HOST_IP):8500
             - name: CONSUL_GRPC_ADDR
               value: $(HOST_IP):8502
-            {{- end }}
-            {{- range $defaults.extraEnv }}
-            {{ toYaml . | nindent 12 }}
             {{- end }}
           command:
             - /consul-bin/consul
